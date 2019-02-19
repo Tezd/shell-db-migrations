@@ -1,0 +1,11 @@
+FROM yandex/clickhouse-client:18.16.0
+
+WORKDIR /app
+
+RUN set -ex && apt-get update && apt-get install -y netcat && rm -rf /var/lib/apt/lists/*
+
+COPY . /app
+
+ENTRYPOINT []
+
+CMD ["nc", "-l" ,"9090"]

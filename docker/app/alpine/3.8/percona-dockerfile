@@ -1,0 +1,13 @@
+FROM alpine:3.8
+
+WORKDIR /app
+
+RUN set -ex \
+	&& apk add --update-cache mysql-client \
+	&& apk add percona-toolkit --update-cache \
+	--repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted \
+	&& rm -rf /var/cache/apk/*
+
+COPY . /app
+
+CMD ["nc", "-l", "9090"]

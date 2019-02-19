@@ -1,0 +1,11 @@
+FROM alpine:3.8
+
+WORKDIR /app
+
+RUN set -ex \
+	&& apk add --update-cache mysql-client \
+	&& rm -rf /var/cache/apk/*
+
+COPY . /app
+
+CMD ["nc", "-l", "9090"]

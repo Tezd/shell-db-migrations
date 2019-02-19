@@ -1,0 +1,15 @@
+version: "3.6"
+
+services:
+  snappy-app:
+    build:
+      dockerfile: docker/app/ubuntu/18.04/clickhouse-dockerfile
+      context: .
+    image: snappy:1.0.0
+    volumes:
+      - ./:/app
+
+  snappy-database:
+    build:
+      dockerfile: docker/db/clickhouse/18.16.0-dockerfile
+      context: .

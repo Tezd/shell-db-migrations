@@ -1,0 +1,11 @@
+FROM yandex/clickhouse-server:18.16.0
+
+USER root
+
+RUN rm /etc/apt/sources.list.d/clickhouse.list && \
+    apt-get --allow-unauthenticated update && \
+    apt-get install -y netcat && \
+    rm -rf /var/lib/apt/lists/* /var/cache/debconf && \
+    apt-get clean
+
+HEALTHCHECK --timeout=10s --start-period=3s CMD nc -z localhost 9000

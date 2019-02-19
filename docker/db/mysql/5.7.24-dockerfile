@@ -1,0 +1,6 @@
+FROM mysql:5.7.24
+
+HEALTHCHECK --timeout=10s --start-period=3s CMD mysql -uroot --execute "SELECT 1;" || exit 1
+
+ENV MYSQL_DATABASE test
+ENV MYSQL_ALLOW_EMPTY_PASSWORD true
